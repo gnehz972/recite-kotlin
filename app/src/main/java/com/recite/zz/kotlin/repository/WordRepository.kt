@@ -17,7 +17,7 @@ class WordRepository(private val wordDao: WordDao) {
     }
 
     fun addWord(word: Word) {
-        Observable.fromCallable { wordDao.addWord(word) }
+        Observable.fromCallable { wordDao.addSingleWord(word) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe()

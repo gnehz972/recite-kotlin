@@ -1,5 +1,6 @@
 package com.recite.zz.kotlin.repository.api
 
+import com.recite.zz.kotlin.repository.data.DailySentence
 import com.recite.zz.kotlin.repository.data.Word
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -9,6 +10,6 @@ import retrofit2.http.GET
  */
 interface WordApi {
 
-    @GET("/baidu.com")
-    fun getWords(): Observable<List<Word>>
+    @GET("/dsapi")
+    fun fetchDailySentence(): Observable<DailySentence>
 }

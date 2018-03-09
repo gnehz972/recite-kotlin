@@ -2,6 +2,7 @@ package com.recite.zz.kotlin.main
 
 import android.os.Bundle
 import com.recite.zz.kotlin.base.BaseActivity
+import com.recite.zz.kotlin.repository.data.DailySentence
 import com.recite.zz.kotlin.repository.data.Word
 import com.recite.zz.mvvm_kotlin.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,9 +19,15 @@ class MainActivity : BaseActivity() {
         getComponent().inject(this)
 
         addTv.setOnClickListener {
-            count++
-            val word = Word("eng_"+count,"ddd","dd","","","")
-            wordViewModel.addWord(word)
+//            count++
+//            val word = Word("eng_"+count,"ddd","dd","","","")
+//            wordViewModel.addSingleWord(word)
+
+
+            wordViewModel.fetchDailySentence()
+                    .subscribe{
+                        textTv.text = it.content
+                    }
         }
     }
 }
