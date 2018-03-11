@@ -1,4 +1,4 @@
-package com.recite.zz.mvvm_kotlin
+package com.recite.zz.kotlin
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

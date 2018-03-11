@@ -1,4 +1,4 @@
-package com.recite.zz.mvvm_kotlin
+package com.recite.zz.kotlin
 
 import org.junit.Test
 

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Mvvm-kotlin</string>
+    <string name="app_name">Recite-kotlin</string>
+    <string name="tab_dict">词典</string>
 </resources>
