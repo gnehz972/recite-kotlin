@@ -10,11 +10,9 @@ import dagger.Provides
 /**
  * Created by zouzheng on 18-3-8.
  */
-@Module(subcomponents = arrayOf())
-class ActivityModule(private val activity: AppCompatActivity) {
+@Module()
+class ActivityModule {
 
-    @Provides
-    fun provideActivity() = activity
 
     @Provides
     fun provideWordViewModel(wordRepository: WordRepository,sentenceRepository: SentenceRepository) = WordViewModel(wordRepository,sentenceRepository)

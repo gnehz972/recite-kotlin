@@ -2,6 +2,7 @@ package com.recite.zz.kotlin.di.module
 
 import android.app.Application
 import android.arch.persistence.room.Room
+import com.recite.zz.kotlin.base.BaseApp
 import com.recite.zz.kotlin.repository.SentenceRepository
 import com.recite.zz.kotlin.repository.WordRepository
 import com.recite.zz.kotlin.repository.api.WordApi
@@ -19,15 +20,15 @@ import javax.inject.Singleton
  * Created by zouzheng on 18-3-8.
  */
 @Module
-class AppModule(val app: Application) {
+class AppModule {
+
+//    @Provides
+//    @Singleton
+//    fun provideApp(app:BaseApp) = app
 
     @Provides
     @Singleton
-    fun provideApp() = app
-
-    @Provides
-    @Singleton
-    fun provideWordDao() = Room.databaseBuilder(app,
+    fun provideWordDao(app:BaseApp) = Room.databaseBuilder(app,
             AppDatabase::class.java, "recite_db").build().wordDao()
 
     @Provides

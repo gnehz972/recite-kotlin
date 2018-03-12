@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getComponent().inject(this)
+//        getComponent().inject(this)
 
 //        addTv.setOnClickListener {
 ////            count++

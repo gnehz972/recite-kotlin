@@ -1,29 +1,16 @@
 package com.recite.zz.kotlin.base
 
-import android.app.Application
-import com.recite.zz.kotlin.di.component.AppComponent
 import com.recite.zz.kotlin.di.component.DaggerAppComponent
-import com.recite.zz.kotlin.di.module.AppModule
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
 /**
  * Created by zouzheng on 18-3-8.
  */
-class BaseApp : Application() {
-    lateinit var compenent: AppComponent
-        private set
-
-    companion object {
-        private var instance: Application? = null
-
-        fun instance() = instance!!
-    }
+class BaseApp : DaggerApplication() {
 
 
-    override fun onCreate() {
-        super.onCreate()
-
-        instance = this
-        compenent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
-        compenent.inject(this)
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent.builder().create(this)
     }
 }

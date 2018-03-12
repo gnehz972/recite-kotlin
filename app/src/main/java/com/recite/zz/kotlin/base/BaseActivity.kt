@@ -1,23 +1,16 @@
 package com.recite.zz.kotlin.base
 
-import android.support.v7.app.AppCompatActivity
-import com.recite.zz.kotlin.di.component.ActivityComponent
-import com.recite.zz.kotlin.di.module.ActivityModule
+import android.os.Bundle
+import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 
 /**
  * Created by zouzheng on 18-3-8.
  */
-open class BaseActivity : AppCompatActivity() {
-    private var activityComponent: ActivityComponent? = null
+open class BaseActivity : DaggerAppCompatActivity() {
 
-    fun getComponent(): ActivityComponent {
-        if (activityComponent == null) {
-            val app = application as BaseApp
-            activityComponent = app.compenent.plus(ActivityModule(this))
-
-
-        }
-
-        return activityComponent!!
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
+        super.onCreate(savedInstanceState)
     }
 }
