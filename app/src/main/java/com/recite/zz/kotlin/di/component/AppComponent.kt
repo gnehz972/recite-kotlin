@@ -1,8 +1,6 @@
 package com.recite.zz.kotlin.di.component
 
-import android.app.Application
 import com.recite.zz.kotlin.base.BaseApp
-import com.recite.zz.kotlin.di.module.ActivityModule
 import com.recite.zz.kotlin.di.module.AppModule
 import com.recite.zz.kotlin.di.module.BuilderModule
 import dagger.Component

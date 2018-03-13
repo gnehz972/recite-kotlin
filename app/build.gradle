@@ -29,6 +29,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibrariesVersion"
     implementation "com.android.support:design:$supportLibrariesVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    //ktx
+    implementation "androidx.core:core-ktx:$ktxVersion"
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"

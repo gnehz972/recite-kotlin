@@ -1,5 +1,6 @@
 package com.recite.zz.kotlin.repository
 
+import com.recite.zz.kotlin.repository.data.DailySentence
 import com.recite.zz.kotlin.repository.data.Word
 import com.recite.zz.kotlin.repository.db.WordDao
 import io.reactivex.Observable
@@ -16,10 +17,12 @@ class WordRepository(private val wordDao: WordDao) {
                 .toObservable()
     }
 
-    fun addWord(word: Word) {
-        Observable.fromCallable { wordDao.addSingleWord(word) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .subscribe()
+    fun addWord(word: Word) : Observable<Unit>{
+      return Observable.fromCallable { wordDao.addSingleWord(word) }
+    }
+
+
+    fun addDailySentence(sentence: DailySentence) : Observable<Unit>{
+        return Observable.fromCallable { wordDao.addDailySentence(sentence) }
     }
 }

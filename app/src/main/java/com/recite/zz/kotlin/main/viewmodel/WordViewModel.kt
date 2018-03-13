@@ -1,33 +1,26 @@
-package com.recite.zz.kotlin.main
+package com.recite.zz.kotlin.main.viewmodel
 
-import com.recite.zz.kotlin.repository.SentenceRepository
 import com.recite.zz.kotlin.repository.WordRepository
-import com.recite.zz.kotlin.repository.data.DailySentence
 import com.recite.zz.kotlin.repository.data.Word
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by zouzheng on 18-3-8.
  */
-class WordViewModel(private val wordRepo: WordRepository, private val sentenceRepo: SentenceRepository) {
+class WordViewModel @Inject constructor(private val wordRepo: WordRepository) {
 
     fun getAllWords(): Observable<List<Word>> {
 
         return wordRepo.getAllWords()
     }
 
-    fun addWord(word: Word) {
-        wordRepo.addWord(word)
-    }
-
-    fun fetchDailySentence(): Observable<DailySentence> {
-        return sentenceRepo.fetchDailySentence()
+    fun addWord(word: Word) : Observable<Unit> {
+       return wordRepo.addWord(word)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
-
 
 }

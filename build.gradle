@@ -36,6 +36,7 @@ subprojects {
     ext.minSdkVersion = '16'
     ext.targetSdkVersion = '23'
 
+    ext.ktxVersion = '0.2'
     ext.retrofitVersion = '2.3.0'
     ext.roomVersion = '1.0.0'
     ext.rxjavaVersion = '2.0.1'

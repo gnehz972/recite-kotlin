@@ -13,5 +13,9 @@ class SentenceRepository(private val wordApi: WordApi){
     fun fetchDailySentence():Observable<DailySentence>{
         return wordApi.fetchDailySentence()
     }
+//
+//    fun getDailySentences():Observable<List<DailySentence>>{
+//
+//    }
 
 }

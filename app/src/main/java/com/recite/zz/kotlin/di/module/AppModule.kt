@@ -1,13 +1,14 @@
 package com.recite.zz.kotlin.di.module
 
-import android.app.Application
 import android.arch.persistence.room.Room
+import android.content.Context
 import com.recite.zz.kotlin.base.BaseApp
 import com.recite.zz.kotlin.repository.SentenceRepository
 import com.recite.zz.kotlin.repository.WordRepository
 import com.recite.zz.kotlin.repository.api.WordApi
 import com.recite.zz.kotlin.repository.db.AppDatabase
 import com.recite.zz.kotlin.repository.db.WordDao
+import com.recite.zz.kotlin.repository.sp.Sp
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -21,10 +22,6 @@ import javax.inject.Singleton
  */
 @Module
 class AppModule {
-
-//    @Provides
-//    @Singleton
-//    fun provideApp(app:BaseApp) = app
 
     @Provides
     @Singleton
@@ -41,13 +38,17 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideApiService() = Retrofit.Builder()
+    fun provideApiService() : WordApi = Retrofit.Builder()
             .baseUrl("http://open.iciba.com")
             .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
             .create(WordApi::class.java)
+
+    @Provides
+    @Singleton
+    fun providePreference(app: BaseApp) = app.getSharedPreferences(Sp.SP_FILE_NAME, Context.MODE_PRIVATE)
 
 
 }
