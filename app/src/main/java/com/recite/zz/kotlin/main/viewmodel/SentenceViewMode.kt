@@ -14,7 +14,7 @@ import javax.inject.Inject
 class SentenceViewMode @Inject constructor(private val sentenceRepository: SentenceRepository,
                                            private val wordRepository: WordRepository){
 
-    fun fetchDailySentence() : Observable<DailySentence> {
+    fun fetchDailySentence() : Observable<List<DailySentence>> {
        return sentenceRepository.fetchDailySentence()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

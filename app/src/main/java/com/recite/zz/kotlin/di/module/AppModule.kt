@@ -34,7 +34,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideSentenceRepo(wordApi: WordApi) = SentenceRepository(wordApi)
+    fun provideSentenceRepo(wordApi: WordApi,wordDao: WordDao) = SentenceRepository(wordApi,wordDao)
 
     @Provides
     @Singleton

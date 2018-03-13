@@ -38,7 +38,14 @@ class HomeFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         sentenceViewMode.fetchDailySentence()
-                .subscribe { testTv.text = it.content }
+                .subscribe {
+                    var text = ""
+                    for (sentence in it){
+                        text+= sentence.caption+"\n"
+
+                    }
+                    testTv.text = text
+                }
 
         sp.edit { putString(Sp.CARD_NAME,"card")}
     }
