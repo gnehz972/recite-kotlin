@@ -26,10 +26,11 @@ class SentenceRepository(private val wordApi: WordApi,private val wordDao: WordD
     }
 
     fun fetchDailySentence() : Observable<List<DailySentence>>{
-        return Observable.concatArray(
-                getDailySentencesDb(),
-                getDailySentencesApi()
-        )
+        return getDailySentencesApi()
+//        return Observable.concatArray(
+//                getDailySentencesDb(),
+//                getDailySentencesApi()
+//        )
     }
 
     private fun saveDailySentenceInDb(sentences:DailySentence){

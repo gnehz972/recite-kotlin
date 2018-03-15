@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.content.edit
 import com.recite.zz.kotlin.base.BaseFragment
 import com.recite.zz.kotlin.R
+import com.recite.zz.kotlin.config.GlideApp
 import com.recite.zz.kotlin.main.viewmodel.SentenceViewMode
 import com.recite.zz.kotlin.repository.sp.Sp
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -37,6 +38,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        sentenceViewMode.let {  }
         sentenceViewMode.fetchDailySentence()
                 .subscribe {
                     var text = ""
@@ -45,6 +47,10 @@ class HomeFragment : BaseFragment() {
 
                     }
                     testTv.text = text
+                    val img = it[0].picture
+                    GlideApp.with(this)
+                            .load(img)
+                            .into(testImg)
                 }
 
         sp.edit { putString(Sp.CARD_NAME,"card")}

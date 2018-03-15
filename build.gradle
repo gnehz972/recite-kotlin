@@ -41,6 +41,7 @@ subprojects {
     ext.roomVersion = '1.0.0'
     ext.rxjavaVersion = '2.0.1'
     ext.daggerVersion = '2.11'
+    ext.glideVersion = '4.6.1'
 }
 
 task clean(type: Delete) {
