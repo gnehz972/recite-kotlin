@@ -8,5 +8,6 @@ class Sp{
         const val SP_FILE_NAME = "sp_file"
 
         const val CARD_NAME = "card_name"
+        const val DAILY_SENTENCE_CHECKDATE = "daily_sentence_checkdate";
     }
 }

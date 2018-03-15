@@ -12,28 +12,21 @@ import io.reactivex.schedulers.Schedulers
 class SentenceRepository(private val wordApi: WordApi,private val wordDao: WordDao){
 
 
-    private fun getDailySentencesDb():Observable<List<DailySentence>>{
+    fun getDailySentencesDb():Observable<List<DailySentence>>{
       return  wordDao.getDailySentences()
                 .toObservable()
 
     }
 
-   private fun getDailySentencesApi():Observable<List<DailySentence>>{
+    fun getDailySentencesApi():Observable<List<DailySentence>>{
         return  wordApi.fetchDailySentence()
                 .doOnNext { saveDailySentenceInDb(it) }
                 .toList()
                 .toObservable()
     }
 
-    fun fetchDailySentence() : Observable<List<DailySentence>>{
-        return getDailySentencesApi()
-//        return Observable.concatArray(
-//                getDailySentencesDb(),
-//                getDailySentencesApi()
-//        )
-    }
 
-    private fun saveDailySentenceInDb(sentences:DailySentence){
+    fun saveDailySentenceInDb(sentences:DailySentence){
         Observable.fromCallable { wordDao.addDailySentence(sentences) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())

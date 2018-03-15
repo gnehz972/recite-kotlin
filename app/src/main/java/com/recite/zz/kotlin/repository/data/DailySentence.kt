@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "DailySentence")
 data class DailySentence(
         @PrimaryKey(autoGenerate = true)
-        val id:Int,
+        val id: Long? = null,
         val content: String,
         val note: String,
         val love: String,

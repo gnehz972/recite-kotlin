@@ -12,6 +12,8 @@ import com.recite.zz.kotlin.R
 import com.recite.zz.kotlin.config.GlideApp
 import com.recite.zz.kotlin.main.viewmodel.SentenceViewMode
 import com.recite.zz.kotlin.repository.sp.Sp
+import com.recite.zz.kotlin.view.DailyView
+import kotlinx.android.synthetic.main.dailyview_layout.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -38,7 +40,6 @@ class HomeFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        sentenceViewMode.let {  }
         sentenceViewMode.fetchDailySentence()
                 .subscribe {
                     var text = ""
@@ -46,11 +47,14 @@ class HomeFragment : BaseFragment() {
                         text+= sentence.caption+"\n"
 
                     }
-                    testTv.text = text
-                    val img = it[0].picture
-                    GlideApp.with(this)
-                            .load(img)
-                            .into(testImg)
+                    if (it.isNotEmpty()){
+                        val img = it[0].picture
+                        GlideApp.with(this)
+                                .load(img)
+                                .into(testImg)
+                        (dailyView as DailyView).updateSentence(it,0)
+                    }
+
                 }
 
         sp.edit { putString(Sp.CARD_NAME,"card")}

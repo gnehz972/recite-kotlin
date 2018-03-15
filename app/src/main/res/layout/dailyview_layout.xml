@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.recite.zz.kotlin.view.DailyView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dailyView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@mipmap/bg_block_pin"
+    android:orientation="vertical"
+    android:paddingBottom="40dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <TextView
+        android:id="@+id/dict_daily_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingTop="10dp"
+        android:text="@string/ciba_daily"
+        android:textColor="@color/text_grey"
+        android:textSize="16dp" />
+    <!--android:textColor="@color/text_dict_light_grey"-->
+
+
+    <TextView
+        android:id="@+id/dict_daily_sentence"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_yellow"
+        android:textSize="16dp" />
+    <!--android:textColor="@color/lightbrown"-->
+
+    <TextView
+        android:id="@+id/dict_daily_sentence_trans"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_dark"
+        android:textSize="16dp" />
+    <!--android:textColor="@color/text_dict_dark_grey"-->
+
+    <TextView
+        android:id="@+id/dict_daily_sentence_note"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_grey2"
+        android:textSize="15dp" />
+    <!--android:textColor="@color/grey4"-->
+
+
+</com.recite.zz.kotlin.view.DailyView>

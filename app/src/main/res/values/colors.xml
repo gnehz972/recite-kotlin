@@ -1,6 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <drawable name="black">#000000</drawable>
+    <drawable name="white">#FFFFFFFF</drawable>
+    <drawable name="ltgray">#CCCCCC</drawable>
+    <drawable name="lightgrey">#f2f2f2</drawable>
+    <drawable name="lightblue">#096bcc</drawable>
+    <drawable name="darkblue">#346699</drawable>
+    <drawable name="red">#ff3300</drawable>
+    <drawable name="purple">#9734ff</drawable>
+    <drawable name="green">#3b9d3d</drawable>
+    <drawable name="lightgreen">#6fbf70</drawable>
+    <drawable name="lightbrown">#cc9832</drawable>
+    <drawable name="grey">#98a1ab</drawable>
+    <drawable name="middlegrey">#cecdce</drawable>
+    <drawable name="lightgrey1">#f7f3f7</drawable>
+    <drawable name="lightgrey_bg">#cfcfcf</drawable>
+    <drawable name="clear">#00cfcfcf</drawable>
+
+    <color name="lightgreen">#6fbf70</color>
+    <color name="black">#ff000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="white_little">#f5f5f5</color>
+    <color name="lightbrown">#ffcc9832</color>
+    <color name="lightblue">#ff33b5e5</color>
+    <color name="divider">#33e0e2e3</color>
+
+    <!--<color name="bg_white">#fff0f0f0</color>-->
+    <color name="bg_white">#ffe1e0de</color>
+    <color name="bg_black">#ff323232</color>
+    <color name="bg_light_green">#406fbf70</color>
+    <color name="bg_dark_green">#8056a757</color>
+    <color name="text_wh_regular">#fff0f0f0</color>
+    <!--<color name="text_bl_regular">#ff151515</color>-->
+    <color name="text_bl_regular">#ff353535</color>
+
+    <color name="light_blue">#55c6f2b8</color>
+    <color name="grey_white">#FFd8d8d8</color>
+    <color name="transparent">#00000000</color>
+    <color name="divide_line_color">#a098a1ab</color>
+    <color name="green">#ff3b9d3d</color>
+    <color name="green_line">#333b9d3d</color>
+    <!--<color name="dark_bg">#ff323232</color>-->
+    <color name="color_bg_ps_wh">#ffa7b8aa</color>
+    <color name="color_bg_ps_bl">#ff3e3d3b</color>
+
+    <color name="text_color_light">#ff999999</color>
+    <color name="text_color_light_grey">#ff919191</color>
+    <color name="text_color_title">#ffe0e0e0</color>
+    <color name="text_color_explain">#ffbebebe</color>
+    <color name="text_color_ps_bl">#ff8a8a8a</color>
+    <color name="text_color_ps_wh">#ff343434</color>
+    <color name="text_color_input">#ff393939</color>
+
+    <color name="text_dict_blue">#279aec</color>
+    <color name="text_dict_green">#99cc00</color>
+    <color name="text_dict_dark_grey">#4e4c4a</color>
+    <color name="text_dict_dark_grey2">#373635</color>
+    <color name="text_dict_light_grey">#bebebe</color>
+    <color name="text_dict_mid_grey">#666666</color>
+
+    <color name="grey_disabled">#ff5b5b5b</color>
+    <color name="list_item_pri_textcolor_bl">#ff9ba1a1</color>
+    <color name="list_item_pri_textcolor_wh">#ff2f2f2f</color>
+    <color name="list_item_sec_textcolor_bl">#ff919191</color>
+    <color name="list_item_sec_textcolor_wh">#ff2f2f2f</color>
+    <color name="grey1">#ffe8e7e7</color>
+    <color name="grey2">#ff999999</color>
+    <color name="grey4">#ff8b8c8c</color>
+
+    <color name="btn_bg_grey">#ffa4a4a4</color>
+    <color name="btn_bg_light_green">#ffc3d7c1</color>
+
+    <drawable name="sp_bg_pressed">#806fbf70</drawable>
+    <drawable name="sp_bg_cyan">#ff4c4747</drawable>
+    <drawable name="sp_bg_brown">#ff59615c</drawable>
+    <drawable name="sp_bg_green">#ff595d61</drawable>
+    <drawable name="sp_bg_grey">#ff3e3b3b</drawable>
+    <drawable name="sp_bg_wh_1">#ffcad0cd</drawable>
+    <drawable name="sp_bg_wh_2">#ffcacbc4</drawable>
+    <drawable name="sp_bg_wh_3">#ffccd2ca</drawable>
+    <drawable name="sp_bg_wh_4">#ffc8c8c6</drawable>
+
+
+    <color name="text_purple">#ff660099</color>
+    <color name="text_hint_grey">#ffcccccc</color>
+    <color name="divider_grey">#ffefeeee</color>
+    <!--<color name="bg_grey">#ffe1e1e1</color>-->
+    <color name="bg_color">#fff2f2f2</color>
+    <color name="pop_item_bg_grey">#55afafaf</color>
+    <color name="pop_item_divider">#cc323232</color>
+
+    <color name="blue">#ff19b5fe</color>
+    <color name="text_yellow">#ffffaf14</color>
+    <color name="text_grey">#ffcccccc</color>
+    <color name="text_grey2">#ff999999</color>
+    <color name="text_grey_divider">#ffeeeeee</color>
+    <color name="text_dark">#ff444444</color>
+    <color name="text_light_blue">#ff19b5fe</color>
+    <color name="bg_light_blue">#ffddebff</color>
+
+    <color name="colorPrimary">#ff19b5fe</color>
+    <color name="colorPrimaryDark">#ff117eb1</color>
+    <color name="colorAccent">#ff19b5fe</color>
+    <color name="colorTitle">#ff353535</color>
+    <color name="colorSubTitle">#ff919191</color>
+
+    <color name="stroke_write">#48c13f</color>
+
+    <color name="bg_tab_color">#ffffff</color>
+    <color name="bg_item_color">#ffffff</color>
+    <color name="bg_item_color2">#ffffff</color>
+    <color name="bg_item_color_pressed">#efefef</color>
+    <color name="bg_item_search_dropdown">#ffffff</color>
+    <color name="bg_card_color">#ffffff</color>
+    <color name="bg_sound_color">#ffffff</color>
 </resources>
