@@ -10,9 +10,9 @@ import androidx.content.edit
 import com.recite.zz.kotlin.base.BaseFragment
 import com.recite.zz.kotlin.R
 import com.recite.zz.kotlin.config.GlideApp
+import com.recite.zz.kotlin.ext.px
 import com.recite.zz.kotlin.main.viewmodel.SentenceViewMode
 import com.recite.zz.kotlin.repository.sp.Sp
-import com.recite.zz.kotlin.view.DailyView
 import kotlinx.android.synthetic.main.dailyview_layout.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
@@ -52,8 +52,9 @@ class HomeFragment : BaseFragment() {
                         GlideApp.with(this)
                                 .load(img)
                                 .into(testImg)
-                        (dailyView as DailyView).updateSentence(it,0)
+                        dailyView.updateSentence(it,0)
                     }
+                   val ten = 10.px
 
                 }
 
