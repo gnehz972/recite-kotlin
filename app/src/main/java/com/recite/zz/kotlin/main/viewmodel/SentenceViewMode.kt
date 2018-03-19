@@ -25,17 +25,18 @@ class SentenceViewMode @Inject constructor(private val sentenceRepository: Sente
         val lastCheckDate = sp.getString(Sp.DAILY_SENTENCE_CHECKDATE, "")
 
 
-        return if (lastCheckDate != date) {
-            Observable.concatArray(sentenceRepository.getDailySentencesApi()
-                    .doOnNext { sp.edit { putString(Sp.DAILY_SENTENCE_CHECKDATE, date) } },
-                    sentenceRepository.getDailySentencesDb())
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-        } else {
-            sentenceRepository.getDailySentencesDb()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-        }
+
+        return kotlin.run {
+            if (lastCheckDate != date) {
+                Observable.concatArray(sentenceRepository.getDailySentencesApi()
+                        .doOnNext { sp.edit { putString(Sp.DAILY_SENTENCE_CHECKDATE, date) } },
+                        sentenceRepository.getDailySentencesDb())
+            } else {
+                sentenceRepository.getDailySentencesDb()
+
+            }
+        }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
 
 
     }

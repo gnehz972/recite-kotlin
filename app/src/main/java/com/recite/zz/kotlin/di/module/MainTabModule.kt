@@ -18,15 +18,15 @@ abstract class MainTabModule {
     @ContributesAndroidInjector()
     abstract fun contributeHomeInjector(): HomeFragment
 
-    @FragmentScope
-    @ContributesAndroidInjector()
-    abstract fun contributeBookFragmentInjector(): BookFragment
-
-    @FragmentScope
-    @ContributesAndroidInjector()
-    abstract fun contributeRememberFragmentInjector(): RememberFragment
-
-    @FragmentScope
-    @ContributesAndroidInjector()
-    abstract fun contributeSettingFragmentInjector(): SettingFragment
+//    @FragmentScope
+//    @ContributesAndroidInjector()
+//    abstract fun contributeBookFragmentInjector(): BookFragment
+//
+//    @FragmentScope
+//    @ContributesAndroidInjector()
+//    abstract fun contributeRememberFragmentInjector(): RememberFragment
+//
+//    @FragmentScope
+//    @ContributesAndroidInjector()
+//    abstract fun contributeSettingFragmentInjector(): SettingFragment
 }

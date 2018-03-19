@@ -2,7 +2,7 @@ package com.recite.zz.kotlin.base
 
 import com.recite.zz.kotlin.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import dagger.android.support.DaggerApplication
 
 /**
  * Created by zouzheng on 18-3-8.

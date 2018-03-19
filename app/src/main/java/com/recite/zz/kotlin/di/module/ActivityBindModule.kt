@@ -9,11 +9,12 @@ import dagger.android.ContributesAndroidInjector
 /**
  * Created by gnehz972 on 18/3/12.
  */
-@Module
+@Module(includes = [MainTabModule::class])
 abstract class ActivityBindModule {
 
-    @ActivityScope
-    @ContributesAndroidInjector(modules = [MainTabModule::class])
-    abstract fun contributeMainActivityInjector(): MainActivity
+
+//    @ActivityScope
+//    @ContributesAndroidInjector(modules = [MainTabModule::class])
+//    abstract fun contributeMainActivityInjector(): MainActivity
 
 }
