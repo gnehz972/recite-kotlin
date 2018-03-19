@@ -1,24 +1,19 @@
 package com.recite.zz.kotlin.main
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.content.edit
 import com.recite.zz.kotlin.base.BaseFragment
 import com.recite.zz.kotlin.R
-import com.recite.zz.kotlin.config.GlideApp
-import com.recite.zz.kotlin.ext.px
 import com.recite.zz.kotlin.main.viewmodel.SentenceViewMode
 import com.recite.zz.kotlin.repository.data.DailySentence
-import com.recite.zz.kotlin.repository.sp.Sp
 import com.recite.zz.kotlin.view.DailyView
+import com.recite.zz.kotlin.view.SwipeLayout
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.dailyview_layout.view.*
 import javax.inject.Inject
 
 /**
@@ -26,9 +21,7 @@ import javax.inject.Inject
  */
 class HomeFragment : BaseFragment() {
     @Inject
-    lateinit var sentenceViewMode : SentenceViewMode
-    @Inject
-    lateinit var sp: SharedPreferences
+    lateinit var sentenceViewMode: SentenceViewMode
     private val mHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +36,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        Log.i("zoz","onHiddenChanged "+hidden+ " "+this)
+        Log.i("zoz", "onHiddenChanged " + hidden + " " + this)
     }
 
 
@@ -51,51 +44,61 @@ class HomeFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         sentenceViewMode.fetchDailySentence()
                 .subscribe {
-                    var text = ""
-                    for (sentence in it){
-                        text+= sentence.caption+"\n"
-
-                    }
-                    if (it.isNotEmpty()){
-//                        val img = it[0].picture
-//                        GlideApp.with(this)
-//                                .load(img)
-//                                .into(testImg)
-//                        dailyView.updateSentence(it,0)
-                        updateDailyView(it)
-                    }
-                   val ten = 10.px
+                    updateDailyView(it)
 
                 }
 
-        sp.edit { putString(Sp.CARD_NAME,"card")}
-    }
+        val frontView = layoutInflater.inflate(R.layout.dailyview_layout, null)
+        val backView = layoutInflater.inflate(R.layout.dailyview_layout, null)
+        swipeLayout.setFrontBackView(frontView, backView)
+        swipeLayout.setSwipeListener(object : SwipeLayout.SwipeListener {
+            override fun onSwipeEnd(front: View, back: View) {
+                if (front is DailyView && back is DailyView) {
+                    front.showNext()
+                    back.showNext()
 
-    private fun updateDailyView(dailySentences: List<DailySentence>) {
-        dict_daily_touch_view.setAnimateView(dict_daily_front)
-        dict_daily_touch_view.setBackView(dict_daily_back)
-
-        if (dailySentences.isEmpty()) {
-            dict_daily_front.visibility = View.GONE
-            dict_daily_back.visibility = View.GONE
-        } else if (dailySentences.size == 1) {
-            (dict_daily_front as DailyView).updateSentence(dailySentences, 0)
-            dict_daily_back.visibility = View.GONE
-        } else {
-            (dict_daily_front as DailyView).updateSentence(dailySentences, 0)
-            (dict_daily_back as DailyView).updateSentence(dailySentences, 1)
-            //set invisible to hold the space
-            //            mBackDailyView.setVisibility(View.INVISIBLE);
-            activity?.window?.decorView?.post{
-                mHandler.post{
-                    val maxHeight = Math.max((dict_daily_front as DailyView).heightNeeded, (dict_daily_back as DailyView).heightNeeded)
-                    val params = dict_daily_front.layoutParams
-                    params.height = maxHeight
-                    dict_daily_front.layoutParams = params
-                    dict_daily_back.layoutParams = params
+                    val maxHeight = Math.max(front.heightNeeded, back.heightNeeded)
+                    val params = front.layoutParams
+                    params?.height = maxHeight
+                    front.layoutParams = params
+                    back.layoutParams = params
                 }
             }
 
+
+        })
+
+
+    }
+
+    private fun updateDailyView(dailySentences: List<DailySentence>) {
+        val frontView = swipeLayout.getFrontView()
+        val backView = swipeLayout.getBackView()
+
+        if (frontView is DailyView && backView is DailyView) {
+            when (dailySentences.size) {
+                0 -> {
+                    frontView.visibility = View.GONE
+                    backView.visibility = View.GONE
+                }
+                1 -> {
+                    frontView.updateSentence(dailySentences, 0)
+                    backView.visibility = View.GONE
+                }
+                else -> {
+                    frontView.updateSentence(dailySentences, 0)
+                    backView.updateSentence(dailySentences, 1)
+                    activity?.window?.decorView?.post {
+                        mHandler.post {
+                            val maxHeight = Math.max(frontView.heightNeeded, backView.heightNeeded)
+                            val params = frontView.layoutParams
+                            params.height = maxHeight
+                            frontView.layoutParams = params
+                            backView.layoutParams = params
+                        }
+                    }
+                }
+            }
         }
 
     }

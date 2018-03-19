@@ -1,59 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        >
-        <RelativeLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <include layout="@layout/dailyview_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dict_daily_back"
-                />
+        android:fillViewport="true">
 
-            <include layout="@layout/dailyview_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dict_daily_front"
-                />
+        <com.recite.zz.kotlin.view.SwipeLayout
+            android:id="@+id/swipeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <com.recite.zz.kotlin.view.GestureView
-                android:id="@+id/dict_daily_touch_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/dict_daily_front"
-                android:layout_alignBottom="@id/dict_daily_front"
-                android:layout_alignLeft="@id/dict_daily_front"
-                android:layout_alignRight="@id/dict_daily_front"
-                />
 
-            <!--<ImageView android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@drawable/ic_pin"-->
-                <!--android:layout_alignTop="@id/dict_daily_front"-->
-                <!--android:layout_alignRight="@id/dict_daily_front"-->
-                <!--/>-->
-        </RelativeLayout>
     </ScrollView>
-
-
-    <!--<ImageView-->
-        <!--android:id="@+id/testImg"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-       <!--/>-->
 
 
 </LinearLayout>

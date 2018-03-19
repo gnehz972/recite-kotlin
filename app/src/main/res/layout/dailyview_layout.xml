@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <com.recite.zz.kotlin.view.DailyView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dailyView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,10 +14,23 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp">
 
-    <ImageView
-        android:id="@+id/headImg"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/headImg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="260:160"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/dict_daily_title"

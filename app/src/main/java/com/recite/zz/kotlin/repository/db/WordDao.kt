@@ -28,6 +28,6 @@ interface WordDao {
     @Insert()
     fun addDailySentence(sentence: DailySentence)
 
-    @Query("select * from DailySentence limit 7")
+    @Query("select * from DailySentence order by id desc limit 7")
     fun getDailySentences() : Single<List<DailySentence>>
 }

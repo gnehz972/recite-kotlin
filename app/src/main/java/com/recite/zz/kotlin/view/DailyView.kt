@@ -35,7 +35,7 @@ class DailyView : LinearLayout {
                 mDailyTrans!!.lineCount * mDailyTrans!!.lineHeight +
                 mDailyNote!!.lineCount * mDailyNote!!.lineHeight +
                 mDailyTitle!!.paddingTop +
-                mDailyTitle!!.paddingBottom + 50 + resources.screenWidth * 260/ 160
+                mDailyTitle!!.paddingBottom + 50 + resources.screenWidth * 160/ 260
 
     constructor(context: Context) : super(context)
 
@@ -77,9 +77,5 @@ class DailyView : LinearLayout {
         if (sentence != null) {
             bindView(sentence)
         }
-    }
-
-    fun shouldShow(): Boolean {
-        return mAllSentences != null && !mAllSentences!!.isEmpty()
     }
 }
