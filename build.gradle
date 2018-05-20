@@ -42,6 +42,7 @@ subprojects {
     ext.rxjavaVersion = '2.0.1'
     ext.daggerVersion = '2.11'
     ext.glideVersion = '4.6.1'
+    ext.kotlinxCoroutinesVersion = "0.22.5"
 }
 
 task clean(type: Delete) {

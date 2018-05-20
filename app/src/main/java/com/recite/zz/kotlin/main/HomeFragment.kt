@@ -14,6 +14,8 @@ import com.recite.zz.kotlin.view.DailyView
 import com.recite.zz.kotlin.view.SwipeLayout
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.launch
 import javax.inject.Inject
 
 /**
@@ -42,11 +44,15 @@ class HomeFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        sentenceViewMode.fetchDailySentence()
-                .subscribe {
-                    updateDailyView(it)
-
-                }
+//        sentenceViewMode.fetchDailySentence()
+//                .subscribe {
+//                    updateDailyView(it)
+//
+//                }
+        launch(UI) {
+            val sentences = sentenceViewMode.getDailySentence()
+            updateDailyView(sentences)
+        }
 
         val frontView = layoutInflater.inflate(R.layout.dailyview_layout, null)
         val backView = layoutInflater.inflate(R.layout.dailyview_layout, null)

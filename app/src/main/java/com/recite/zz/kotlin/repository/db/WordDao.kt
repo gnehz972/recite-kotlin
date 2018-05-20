@@ -30,4 +30,7 @@ interface WordDao {
 
     @Query("select * from DailySentence order by id desc limit 7")
     fun getDailySentences() : Single<List<DailySentence>>
+
+    @Query("select * from DailySentence order by id desc limit 7")
+    fun getDailySentences2() : List<DailySentence>
 }

@@ -2,9 +2,11 @@ package com.recite.zz.kotlin.di.module
 
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import com.recite.zz.kotlin.base.BaseApp
 import com.recite.zz.kotlin.repository.SentenceRepository
 import com.recite.zz.kotlin.repository.WordRepository
+import com.recite.zz.kotlin.repository.api.MainApi
 import com.recite.zz.kotlin.repository.api.WordApi
 import com.recite.zz.kotlin.repository.db.AppDatabase
 import com.recite.zz.kotlin.repository.db.WordDao
@@ -32,9 +34,6 @@ class AppModule {
     @Singleton
     fun provideWordRepo(wordDao: WordDao) = WordRepository(wordDao)
 
-    @Provides
-    @Singleton
-    fun provideSentenceRepo(wordApi: WordApi,wordDao: WordDao) = SentenceRepository(wordApi,wordDao)
 
     @Provides
     @Singleton
@@ -45,6 +44,17 @@ class AppModule {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
             .create(WordApi::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideMainApi() : MainApi = Retrofit.Builder()
+            .baseUrl("http://open.iciba.com")
+            .client(OkHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory.invoke())
+            .build()
+            .create(MainApi::class.java)
 
     @Provides
     @Singleton
