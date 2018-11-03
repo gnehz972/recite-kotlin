@@ -1,7 +1,7 @@
 package com.recite.zz.kotlin.repository.db
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.recite.zz.kotlin.repository.data.DailySentence
 import com.recite.zz.kotlin.repository.data.Word
 

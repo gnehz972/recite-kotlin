@@ -1,7 +1,7 @@
 package com.recite.zz.kotlin.repository.api
 
 import com.recite.zz.kotlin.repository.data.DailySentence
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
 /**

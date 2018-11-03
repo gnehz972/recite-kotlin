@@ -1,6 +1,5 @@
 package com.recite.zz.kotlin.repository
 
-import com.recite.zz.kotlin.ext.await
 import com.recite.zz.kotlin.repository.api.MainApi
 import com.recite.zz.kotlin.repository.api.WordApi
 import com.recite.zz.kotlin.repository.data.DailySentence
@@ -8,8 +7,10 @@ import com.recite.zz.kotlin.repository.db.WordDao
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.rx2.await
 import javax.inject.Inject
 
 /**
@@ -44,7 +45,7 @@ class SentenceRepository @Inject constructor (private val wordApi: WordApi,priva
     }
 
     fun getDailySentenceDb(): Deferred<List<DailySentence>> {
-        return async { wordDao.getDailySentences().await() }
+        return GlobalScope.async { wordDao.getDailySentences().await() }
     }
 
 

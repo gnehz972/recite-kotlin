@@ -1,10 +1,9 @@
 package com.recite.zz.kotlin.di.module
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.recite.zz.kotlin.base.BaseApp
-import com.recite.zz.kotlin.repository.SentenceRepository
 import com.recite.zz.kotlin.repository.WordRepository
 import com.recite.zz.kotlin.repository.api.MainApi
 import com.recite.zz.kotlin.repository.api.WordApi

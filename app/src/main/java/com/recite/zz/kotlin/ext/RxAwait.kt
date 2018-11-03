@@ -1,27 +1,15 @@
-package com.recite.zz.kotlin.ext
 /*
- * Copyright 2016-2017 JetBrains s.r.o.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2016-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
  */
-
+package kotlinx.coroutines.rx2
 
 import io.reactivex.*
 import io.reactivex.disposables.Disposable
-import kotlinx.coroutines.experimental.CancellableContinuation
-import kotlinx.coroutines.experimental.CancellationException
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.suspendCancellableCoroutine
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.*
 
 // ------------------------ CompletableSource ------------------------
 
@@ -34,7 +22,7 @@ import kotlinx.coroutines.experimental.suspendCancellableCoroutine
  */
 public suspend fun CompletableSource.await(): Unit = suspendCancellableCoroutine { cont ->
     subscribe(object : CompletableObserver {
-        override fun onSubscribe(d: Disposable) { cont.disposeOnCompletion(d) }
+        override fun onSubscribe(d: Disposable) { cont.disposeOnCancellation(d) }
         override fun onComplete() { cont.resume(Unit) }
         override fun onError(e: Throwable) { cont.resumeWithException(e) }
     })
@@ -65,7 +53,7 @@ public suspend fun <T> MaybeSource<T>.await(): T? = (this as MaybeSource<T?>).aw
  */
 public suspend fun <T> MaybeSource<T>.awaitOrDefault(default: T): T = suspendCancellableCoroutine { cont ->
     subscribe(object : MaybeObserver<T> {
-        override fun onSubscribe(d: Disposable) { cont.disposeOnCompletion(d) }
+        override fun onSubscribe(d: Disposable) { cont.disposeOnCancellation(d) }
         override fun onComplete() { cont.resume(default) }
         override fun onSuccess(t: T) { cont.resume(t) }
         override fun onError(error: Throwable) { cont.resumeWithException(error) }
@@ -84,7 +72,7 @@ public suspend fun <T> MaybeSource<T>.awaitOrDefault(default: T): T = suspendCan
  */
 public suspend fun <T> SingleSource<T>.await(): T = suspendCancellableCoroutine { cont ->
     subscribe(object : SingleObserver<T> {
-        override fun onSubscribe(d: Disposable) { cont.disposeOnCompletion(d) }
+        override fun onSubscribe(d: Disposable) { cont.disposeOnCancellation(d) }
         override fun onSuccess(t: T) { cont.resume(t) }
         override fun onError(error: Throwable) { cont.resumeWithException(error) }
     })
@@ -161,8 +149,8 @@ public suspend fun <T> ObservableSource<T>.awaitSingle(): T = awaitOne(Mode.SING
 
 // ------------------------ private ------------------------
 
-internal fun CancellableContinuation<*>.disposeOnCompletion(d: Disposable) =
-        invokeOnCompletion { d.dispose() }
+internal fun CancellableContinuation<*>.disposeOnCancellation(d: Disposable) =
+        invokeOnCancellation { d.dispose() }
 
 private enum class Mode(val s: String) {
     FIRST("awaitFirst"),
@@ -183,7 +171,7 @@ private suspend fun <T> ObservableSource<T>.awaitOne(
 
         override fun onSubscribe(sub: Disposable) {
             subscription = sub
-            cont.invokeOnCompletion { sub.dispose() }
+            cont.invokeOnCancellation { sub.dispose() }
         }
 
         override fun onNext(t: T) {

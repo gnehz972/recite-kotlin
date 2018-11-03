@@ -14,8 +14,9 @@ import com.recite.zz.kotlin.view.DailyView
 import com.recite.zz.kotlin.view.SwipeLayout
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -49,7 +50,7 @@ class HomeFragment : BaseFragment() {
 //                    updateDailyView(it)
 //
 //                }
-        launch(UI) {
+        GlobalScope.launch(Dispatchers.Main) {
             val sentences = sentenceViewMode.getDailySentence()
             updateDailyView(sentences)
         }

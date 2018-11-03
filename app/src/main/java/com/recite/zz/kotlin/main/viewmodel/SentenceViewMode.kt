@@ -1,8 +1,7 @@
 package com.recite.zz.kotlin.main.viewmodel
 
 import android.content.SharedPreferences
-import androidx.content.edit
-import com.recite.zz.kotlin.ext.await
+import androidx.core.content.edit
 import com.recite.zz.kotlin.repository.SentenceRepository
 import com.recite.zz.kotlin.repository.api.MainApi
 import com.recite.zz.kotlin.repository.data.DailySentence
@@ -11,7 +10,9 @@ import com.recite.zz.kotlin.repository.sp.Sp
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.rx2.await
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -52,7 +53,7 @@ class SentenceViewMode @Inject constructor(private val sentenceRepository: Sente
             val date = SimpleDateFormat("yyyy-MM-dd").format(Date())
             if (lastCheckDate != date) {
                 val netSentence = mainApi.fetchDailySentence().await()
-                async { wordDao.addDailySentence(netSentence) }.await()
+                GlobalScope.async { wordDao.addDailySentence(netSentence) }.await()
             }
 
             return wordDao.getDailySentences()

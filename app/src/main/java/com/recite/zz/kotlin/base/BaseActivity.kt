@@ -1,7 +1,7 @@
 package com.recite.zz.kotlin.base
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
 

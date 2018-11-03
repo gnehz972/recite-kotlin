@@ -1,13 +1,13 @@
 package com.recite.zz.kotlin.main
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 
 /**
  * Created by gnehz972 on 18/3/10.
  */
-class TabPagerAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm){
+class TabPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm){
     override fun getItem(position: Int): Fragment {
         return HomeFragment()
     }

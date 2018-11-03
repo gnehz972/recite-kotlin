@@ -1,9 +1,7 @@
 package com.recite.zz.kotlin.base
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.DaggerFragment
+import androidx.fragment.app.Fragment
 
 /**
  * Created by gnehz972 on 18/3/11.
