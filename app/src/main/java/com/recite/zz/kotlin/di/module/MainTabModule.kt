@@ -1,22 +1,27 @@
 package com.recite.zz.kotlin.di.module
 
+import androidx.lifecycle.ViewModelProvider
+import com.recite.zz.kotlin.di.ViewModelFactory
 import com.recite.zz.kotlin.di.scope.FragmentScope
-import com.recite.zz.kotlin.main.BookFragment
 import com.recite.zz.kotlin.main.HomeFragment
-import com.recite.zz.kotlin.main.RememberFragment
-import com.recite.zz.kotlin.main.SettingFragment
+import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 /**
  * Created by zouzheng on 18-3-15.
  */
-@Module
+@Module(includes = [
+    FeatureViewModelModule::class
+])
 abstract class MainTabModule {
 
     @FragmentScope
     @ContributesAndroidInjector()
     abstract fun contributeHomeInjector(): HomeFragment
+
+    @Binds
+    abstract fun bindFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 
 //    @FragmentScope
 //    @ContributesAndroidInjector()

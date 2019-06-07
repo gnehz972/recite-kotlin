@@ -11,5 +11,5 @@ interface MainApi {
 
 
     @GET("/dsapi")
-    fun fetchDailySentence(): Deferred<DailySentence>
+    suspend fun fetchDailySentence(): DailySentence
 }

@@ -11,5 +11,5 @@ import retrofit2.http.GET
 interface WordApi {
 
     @GET("/dsapi")
-    fun fetchDailySentence(): Observable<DailySentence>
+    suspend fun fetchDailySentence(): DailySentence
 }

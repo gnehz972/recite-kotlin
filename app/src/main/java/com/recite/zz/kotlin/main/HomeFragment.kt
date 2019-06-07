@@ -2,21 +2,18 @@ package com.recite.zz.kotlin.main
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.recite.zz.kotlin.base.BaseFragment
+import androidx.lifecycle.observe
 import com.recite.zz.kotlin.R
+import com.recite.zz.kotlin.base.BaseFragment
 import com.recite.zz.kotlin.main.viewmodel.SentenceViewMode
 import com.recite.zz.kotlin.repository.data.DailySentence
 import com.recite.zz.kotlin.view.DailyView
 import com.recite.zz.kotlin.view.SwipeLayout
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -37,22 +34,16 @@ class HomeFragment : BaseFragment() {
         return view
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        Log.i("zoz", "onHiddenChanged " + hidden + " " + this)
-    }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        sentenceViewMode.fetchDailySentence()
-//                .subscribe {
-//                    updateDailyView(it)
-//
-//                }
-        GlobalScope.launch(Dispatchers.Main) {
-            val sentences = sentenceViewMode.getDailySentence()
-            updateDailyView(sentences)
+        sentenceViewMode.getSentences().observe(viewLifecycleOwner){ sentences ->
+
+            sentences.onSuccess {
+                updateDailyView(it)
+            }
+
         }
 
         val frontView = layoutInflater.inflate(R.layout.dailyview_layout, null)

@@ -1,18 +1,13 @@
 package com.recite.zz.kotlin.main.viewmodel
 
 import android.content.SharedPreferences
-import androidx.core.content.edit
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.liveData
 import com.recite.zz.kotlin.repository.SentenceRepository
-import com.recite.zz.kotlin.repository.api.MainApi
 import com.recite.zz.kotlin.repository.data.DailySentence
-import com.recite.zz.kotlin.repository.db.WordDao
 import com.recite.zz.kotlin.repository.sp.Sp
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.rx2.await
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -21,48 +16,34 @@ import javax.inject.Inject
  * Created by gnehz972 on 18/3/12.
  */
 class SentenceViewMode @Inject constructor(private val sentenceRepository: SentenceRepository,
-                                           private val wordDao: WordDao,
-                                           private val mainApi: MainApi,
-                                           private val sp: SharedPreferences) {
-
-    fun fetchDailySentence(): Observable<List<DailySentence>> {
-        val date = SimpleDateFormat("yyyy-MM-dd").format(Date())
-        val lastCheckDate = sp.getString(Sp.DAILY_SENTENCE_CHECKDATE, "")
+                                           private val sp: SharedPreferences) : ViewModel() {
 
 
-
-        return kotlin.run {
-            if (lastCheckDate != date) {
-                Observable.concatArray(sentenceRepository.getDailySentencesApi()
-                        .doOnNext { sp.edit { putString(Sp.DAILY_SENTENCE_CHECKDATE, date) } },
-                        sentenceRepository.getDailySentencesDb())
-            } else {
-                sentenceRepository.getDailySentencesDb()
-
-            }
-        }.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-
-
-    }
-
-    suspend fun getDailySentence(): List<DailySentence> {
+    fun getSentences() = liveData {
         try {
+            val sentences = sentenceRepository.getDailySentencesDb()
+            emit(Result.success(sentences))
 
             val lastCheckDate = sp.getString(Sp.DAILY_SENTENCE_CHECKDATE, "")
             val date = SimpleDateFormat("yyyy-MM-dd").format(Date())
             if (lastCheckDate != date) {
-                val netSentence = mainApi.fetchDailySentence().await()
-                GlobalScope.async { wordDao.addDailySentence(netSentence) }.await()
-            }
+                val netSentence = sentenceRepository.getDailySentencesApi()
+                sentenceRepository.saveDailySentenceInDb(netSentence)
 
-            return wordDao.getDailySentences()
-                    .subscribeOn(Schedulers.io())
-                    .await()
+                val sentencesNew = sentenceRepository.getDailySentencesDb()
+                emit(Result.success(sentencesNew))
+            }
 
         } catch (e: Exception) {
             e.printStackTrace()
-            return emptyList()
+            emit(Result.failure(e))
+        }
+    }
+
+    class Factory(private val sentenceRepository: SentenceRepository,
+                  private val sp: SharedPreferences) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return SentenceViewMode(sentenceRepository, sp) as T
         }
     }
 

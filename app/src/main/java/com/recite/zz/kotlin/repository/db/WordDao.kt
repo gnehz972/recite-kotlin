@@ -15,22 +15,19 @@ import io.reactivex.Single
 interface WordDao {
 
     @Query("select * from Word")
-    fun getAllWord(): Single<List<Word>>
+    suspend fun getAllWord(): List<Word>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addSingleWord(word: Word)
+    suspend fun addSingleWord(word: Word)
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addAllWord(words: List<Word>)
+    suspend fun addAllWord(words: List<Word>)
 
-    @Insert()
-    fun addDailySentence(sentence: DailySentence)
-
-    @Query("select * from DailySentence order by id desc limit 7")
-    fun getDailySentences() : Single<List<DailySentence>>
+    @Insert
+    suspend fun addDailySentence(sentence: DailySentence)
 
     @Query("select * from DailySentence order by id desc limit 7")
-    fun getDailySentences2() : List<DailySentence>
+    suspend fun getDailySentences2() : List<DailySentence>
 }
