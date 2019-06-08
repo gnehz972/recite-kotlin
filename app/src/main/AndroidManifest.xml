@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.recite.zz.kotlin">
+    package="com.bocc.recite.kotlin">
     
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:name="com.recite.zz.kotlin.base.BaseApp"
+        android:name="com.bocc.recite.kotlin.base.BaseApp"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.recite.zz.kotlin.main.MainActivity">
+        <activity android:name="com.bocc.recite.kotlin.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

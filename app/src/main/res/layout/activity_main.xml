@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.recite.zz.kotlin.main.MainActivity">
+    tools:context="com.bocc.recite.kotlin.main.MainActivity">
 
 
     <FrameLayout
@@ -19,7 +19,7 @@
         />
 
 
-    <com.recite.zz.kotlin.view.FragmentTabHost
+    <com.bocc.recite.kotlin.view.FragmentTabHost
         android:id="@android:id/tabhost"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_tab_height"
