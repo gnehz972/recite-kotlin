@@ -1,12 +1,9 @@
 package com.recite.zz.kotlin.main.viewmodel
 
 import android.content.SharedPreferences
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.recite.zz.kotlin.repository.SentenceRepository
-import com.recite.zz.kotlin.repository.data.DailySentence
 import com.recite.zz.kotlin.repository.sp.Sp
 import java.text.SimpleDateFormat
 import java.util.*
@@ -37,13 +34,6 @@ class SentenceViewMode @Inject constructor(private val sentenceRepository: Sente
         } catch (e: Exception) {
             e.printStackTrace()
             emit(Result.failure(e))
-        }
-    }
-
-    class Factory(private val sentenceRepository: SentenceRepository,
-                  private val sp: SharedPreferences) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return SentenceViewMode(sentenceRepository, sp) as T
         }
     }
 

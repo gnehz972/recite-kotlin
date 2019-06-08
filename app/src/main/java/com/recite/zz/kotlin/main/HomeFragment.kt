@@ -38,13 +38,6 @@ class HomeFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        sentenceViewMode.getSentences().observe(viewLifecycleOwner){ sentences ->
-
-            sentences.onSuccess {
-                updateDailyView(it)
-            }
-
-        }
 
         val frontView = layoutInflater.inflate(R.layout.dailyview_layout, null)
         val backView = layoutInflater.inflate(R.layout.dailyview_layout, null)
@@ -62,10 +55,15 @@ class HomeFragment : BaseFragment() {
                     back.layoutParams = params
                 }
             }
-
-
         })
 
+        sentenceViewMode.getSentences().observe(viewLifecycleOwner){ sentences ->
+
+            sentences.onSuccess {
+                updateDailyView(it)
+            }
+
+        }
 
     }
 
