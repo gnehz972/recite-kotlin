@@ -20,7 +20,7 @@ import javax.inject.Singleton
 /**
  * Created by zouzheng on 18-3-8.
  */
-@Module
+@Module(includes = [ViewModeModule::class])
 class AppModule {
 
     @Provides

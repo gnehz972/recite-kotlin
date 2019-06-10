@@ -11,17 +11,15 @@ import dagger.android.ContributesAndroidInjector
 /**
  * Created by zouzheng on 18-3-15.
  */
-@Module(includes = [
-    FeatureViewModelModule::class
-])
+@Module
 abstract class MainTabModule {
 
     @FragmentScope
     @ContributesAndroidInjector()
     abstract fun contributeHomeInjector(): HomeFragment
 
-    @Binds
-    abstract fun bindFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
+//    @Binds
+//    abstract fun bindFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 
 //    @FragmentScope
 //    @ContributesAndroidInjector()

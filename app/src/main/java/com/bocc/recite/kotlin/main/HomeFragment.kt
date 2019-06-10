@@ -2,9 +2,12 @@ package com.bocc.recite.kotlin.main
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import com.bocc.recite.kotlin.R
 import com.bocc.recite.kotlin.base.BaseFragment
@@ -21,12 +24,14 @@ import javax.inject.Inject
  */
 class HomeFragment : BaseFragment() {
     @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var sentenceViewMode: SentenceViewMode
     private val mHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
+        Log.d("zoz22","HomeFragment oncreate savedInstanceState=$savedInstanceState + this=$this")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,6 +43,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        sentenceViewMode = ViewModelProviders.of(this,viewModelFactory).get(SentenceViewMode::class.java)
 
         val frontView = layoutInflater.inflate(R.layout.dailyview_layout, null)
         val backView = layoutInflater.inflate(R.layout.dailyview_layout, null)
@@ -57,7 +63,8 @@ class HomeFragment : BaseFragment() {
             }
         })
 
-        sentenceViewMode.getSentences().observe(viewLifecycleOwner){ sentences ->
+        sentenceViewMode.sentence.observe(viewLifecycleOwner){ sentences ->
+            Log.d("zoz22","HomeFragment observe sentences=$sentences",Error())
 
             sentences.onSuccess {
                 updateDailyView(it)
