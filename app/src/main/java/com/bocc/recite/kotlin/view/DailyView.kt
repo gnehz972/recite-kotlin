@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 
-import com.bocc.recite.kotlin.R
+import com.bocc.recite.R
 import com.bocc.recite.kotlin.ext.loadUrl
 import com.bocc.recite.kotlin.ext.screenWidth
 import com.bocc.recite.kotlin.repository.data.DailySentence

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import com.bocc.recite.kotlin.base.BaseActivity
-import com.bocc.recite.kotlin.R
+import com.bocc.recite.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

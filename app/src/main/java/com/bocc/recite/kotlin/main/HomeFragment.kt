@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
-import com.bocc.recite.kotlin.R
+import com.bocc.recite.R
 import com.bocc.recite.kotlin.base.BaseFragment
 import com.bocc.recite.kotlin.main.viewmodel.SentenceViewMode
 import com.bocc.recite.kotlin.repository.data.DailySentence
