@@ -16,7 +16,10 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
 
+    @Test
+    fun testMock(){
         val word = mock(Word::class.java)
         `when`(word.ps).thenReturn("pp")
         assertEquals(word.ps,"pp")
