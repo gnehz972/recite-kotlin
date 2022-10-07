@@ -5,12 +5,14 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.bocc.recite.kotlin.repository.WordRepository
 import com.bocc.recite.kotlin.repository.data.Word
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
  * Created by zouzheng on 18-3-8.
  */
+@HiltViewModel
 class WordViewModel @Inject constructor(private val wordRepo: WordRepository) : ViewModel() {
 
     fun getAllWords() = liveData {

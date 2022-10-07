@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.bocc.recite.kotlin.repository.SentenceRepository
 import com.bocc.recite.kotlin.repository.sp.Sp
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -13,6 +14,7 @@ import javax.inject.Inject
 /**
  * Created by gnehz972 on 18/3/12.
  */
+@HiltViewModel
 class SentenceViewMode @Inject constructor(private val sentenceRepository: SentenceRepository,
                                            private val sp: SharedPreferences) : ViewModel() {
 

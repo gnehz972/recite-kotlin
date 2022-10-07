@@ -6,22 +6,26 @@ import android.view.View
 import android.widget.TextView
 import com.bocc.recite.kotlin.base.BaseActivity
 import com.bocc.recite.R
-import kotlinx.android.synthetic.main.activity_main.*
+import com.bocc.recite.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initTab()
     }
 
 
     private fun initTab(){
-        tabhost.setup(this, supportFragmentManager, R.id.content)
-        tabhost.tabWidget.setBackgroundColor(resources.getColor(android.R.color.white))
-        tabhost.tabWidget.dividerDrawable = null
+        binding.tabhost.setup(this, supportFragmentManager, R.id.content)
+        binding.tabhost.tabWidget.setBackgroundColor(resources.getColor(android.R.color.white))
+        binding.tabhost.tabWidget.dividerDrawable = null
 
         addTabHost("1",HomeFragment::class.java ,resources.getDrawable(R.drawable.tab_dict),
                 "", null)
@@ -38,9 +42,9 @@ class MainActivity : BaseActivity() {
 
 
     private fun addTabHost(tabId: String, clz: Class<*>, drawable: Drawable, text: String, bundle: Bundle?) {
-        val tabSpec = tabhost.newTabSpec(tabId)
+        val tabSpec = binding.tabhost.newTabSpec(tabId)
                 .setIndicator(getItemView(drawable, text))
-        tabhost.addTab(tabSpec, clz, bundle)
+        binding.tabhost.addTab(tabSpec, clz, bundle)
     }
 
     private fun getItemView(drawable: Drawable, text: String): View {

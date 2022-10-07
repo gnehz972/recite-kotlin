@@ -22,25 +22,27 @@ object PreferenceDelegates {
         return Prefs(defaultValue)
     }
 
-    fun int(defaultValue: Int = 0) : ReadWriteProperty<AppPreferences,Any> {
+    fun int(defaultValue: Int = 0): ReadWriteProperty<AppPreferences, Any> {
         return Prefs(defaultValue)
     }
 
-    fun long(defaultValue: Long = 0L) : ReadWriteProperty<AppPreferences,Any>{
+    fun long(defaultValue: Long = 0L): ReadWriteProperty<AppPreferences, Any> {
+        val dd: String? = null
+        val ddd = dd ?: ""
         return Prefs(defaultValue)
     }
 }
 
 private class Prefs(private val defaultValue: Any) : ReadWriteProperty<AppPreferences, Any> {
     override fun getValue(thisRef: AppPreferences, property: KProperty<*>): Any {
-        return when(defaultValue){
-            is String -> thisRef.preferences.getString(property.name, defaultValue)
+        return when (defaultValue) {
+            is String -> thisRef.preferences.getString(property.name, defaultValue) ?: ""
             is Int -> thisRef.preferences.getInt(property.name, defaultValue)
             is Long -> thisRef.preferences.getLong(property.name, defaultValue)
             is Boolean -> thisRef.preferences.getBoolean(property.name, defaultValue)
             is Float -> thisRef.preferences.getFloat(property.name, defaultValue)
-            is Set<*> -> thisRef.preferences.getStringSet(property.name, defaultValue as Set<String>)
-
+            is Set<*> -> thisRef.preferences.getStringSet(property.name,
+                defaultValue as Set<String>) ?: emptySet<String>()
             else -> defaultValue
 
         }
@@ -48,12 +50,12 @@ private class Prefs(private val defaultValue: Any) : ReadWriteProperty<AppPrefer
 
     override fun setValue(thisRef: AppPreferences, property: KProperty<*>, value: Any) {
         thisRef.preferences.edit {
-            when(value){
-                is String -> putString(property.name,value)
-                is Int -> putInt(property.name,value)
-                is Long -> putLong(property.name,value)
-                is Boolean -> putBoolean(property.name,value)
-                is Float -> putFloat(property.name,value)
+            when (value) {
+                is String -> putString(property.name, value)
+                is Int -> putInt(property.name, value)
+                is Long -> putLong(property.name, value)
+                is Boolean -> putBoolean(property.name, value)
+                is Float -> putFloat(property.name, value)
             }
         }
     }
