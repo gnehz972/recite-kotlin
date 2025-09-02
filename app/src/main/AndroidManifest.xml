@@ -13,7 +13,8 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bocc.recite.kotlin.main.MainActivity">
+        <activity android:name="com.bocc.recite.kotlin.main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

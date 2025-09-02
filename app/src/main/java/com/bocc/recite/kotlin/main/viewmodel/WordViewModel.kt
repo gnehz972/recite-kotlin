@@ -1,11 +1,13 @@
 package com.bocc.recite.kotlin.main.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.bocc.recite.kotlin.repository.WordRepository
 import com.bocc.recite.kotlin.repository.data.Word
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,17 +17,29 @@ import javax.inject.Inject
 @HiltViewModel
 class WordViewModel @Inject constructor(private val wordRepo: WordRepository) : ViewModel() {
 
-    fun getAllWords() = liveData {
-        try {
-            emit(Result.success(wordRepo.getAllWords()))
-        } catch (e: Exception) {
-            emit(Result.failure(e))
+    private val _words = MutableStateFlow<Result<List<Word>>?>(null)
+    val words: StateFlow<Result<List<Word>>?> = _words.asStateFlow()
+
+    fun getAllWords() {
+        viewModelScope.launch {
+            try {
+                val wordsList = wordRepo.getAllWords()
+                _words.value = Result.success(wordsList)
+            } catch (e: Exception) {
+                _words.value = Result.failure(e)
+            }
         }
     }
 
     fun addWord(word: Word) {
         viewModelScope.launch {
-            wordRepo.addWord(word)
+            try {
+                wordRepo.addWord(word)
+                // Refresh the words list after adding
+                getAllWords()
+            } catch (e: Exception) {
+                _words.value = Result.failure(e)
+            }
         }
     }
 

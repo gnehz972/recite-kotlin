@@ -1,13 +1,14 @@
 [versions]
 # Android SDK versions
-compileSdk = "33"
+compileSdk = "34"
 buildTools = "32.0.0"
 minSdk = "21"
-targetSdk = "28"
+targetSdk = "33"
 
 # Gradle and build tools
 gradleTool = "8.1.4"
-kotlin = "1.6.10"
+kotlin = "1.9.20"
+ksp = "1.9.20-1.0.14"
 
 # AndroidX libraries
 constraintLayout = "2.1.2"
@@ -19,6 +20,13 @@ lifecycle = "2.3.1"
 room = "2.4.2"
 material = "1.0.0"
 
+# Compose
+composeBom = "2023.10.01"
+composeCompiler = "1.5.4"
+composeActivity = "1.8.2"
+composeNavigation = "2.7.6"
+composeHiltNavigation = "1.1.0"
+
 # Kotlin
 kotlinxCoroutines = "1.2.1"
 
@@ -29,10 +37,10 @@ retrofit = "2.6.0"
 rxjava = "2.0.1"
 
 # Dependency Injection
-hilt = "2.40.1"
+hilt = "2.48"
 
 # Image Loading
-glide = "4.8.0"
+glide = "5.0.4"
 
 # Testing
 junit = "4.12"
@@ -42,6 +50,21 @@ mockito = "2.28.2"
 
 # Other
 rebound = "0.3.8"
+coil = "2.5.0"
+
+# Compose Libraries
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "composeHiltNavigation" }
 
 [libraries]
 # AndroidX Core
@@ -87,6 +110,7 @@ glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", versi
 
 # Other
 rebound = { group = "com.facebook.rebound", name = "rebound", version.ref = "rebound" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -95,10 +119,25 @@ androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espres
 mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockito" }
 mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockito" }
 
+# Compose Libraries (already defined above, but adding to libraries section for consistency)
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "composeHiltNavigation" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradleTool" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 [bundles]
@@ -110,3 +149,5 @@ room = ["androidx-room-runtime", "androidx-room-rxjava2", "androidx-room-ktx"]
 hilt = ["hilt-android"]
 glide = ["glide", "glide-okhttp3-integration"]
 testing = ["junit", "androidx-test-runner", "androidx-test-espresso-core", "mockito-inline", "mockito-android"]
+compose = ["androidx-compose-ui", "androidx-compose-ui-tooling-preview", "androidx-compose-material3", "androidx-compose-material-icons-extended"]
+compose-testing = ["androidx-compose-ui-test-junit4", "androidx-compose-ui-test-manifest"]

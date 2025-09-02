@@ -16,17 +16,15 @@ interface WordDao {
     @Query("select * from Word")
     suspend fun getAllWord(): List<Word>
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addSingleWord(word: Word)
-
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addAllWord(words: List<Word>)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addDailySentence(sentence: DailySentence)
 
     @Query("select * from DailySentence order by id desc limit 7")
-    suspend fun getDailySentences2() : List<DailySentence>
+    suspend fun getDailySentences2(): List<DailySentence>
 }
