@@ -1,0 +1,112 @@
+[versions]
+# Android SDK versions
+compileSdk = "33"
+buildTools = "32.0.0"
+minSdk = "21"
+targetSdk = "28"
+
+# Gradle and build tools
+gradleTool = "8.1.4"
+kotlin = "1.6.10"
+
+# AndroidX libraries
+constraintLayout = "2.1.2"
+appcompat = "1.4.0"
+core = "1.7.0"
+coreKtx = "1.9.0"
+fragmentKtx = "1.5.3"
+lifecycle = "2.3.1"
+room = "2.4.2"
+material = "1.0.0"
+
+# Kotlin
+kotlinxCoroutines = "1.2.1"
+
+# Networking
+retrofit = "2.6.0"
+
+# Reactive
+rxjava = "2.0.1"
+
+# Dependency Injection
+hilt = "2.40.1"
+
+# Image Loading
+glide = "4.8.0"
+
+# Testing
+junit = "4.12"
+testRunner = "1.1.0"
+espresso = "3.1.0"
+mockito = "2.28.2"
+
+# Other
+rebound = "0.3.8"
+
+[libraries]
+# AndroidX Core
+androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
+androidx-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+# Lifecycle
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+
+# Kotlin
+kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+
+# Networking
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+retrofit-adapter-rxjava2 = { group = "com.squareup.retrofit2", name = "adapter-rxjava2", version.ref = "retrofit" }
+
+# Reactive
+rxandroid = { group = "io.reactivex.rxjava2", name = "rxandroid", version.ref = "rxjava" }
+
+# Room
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-rxjava2 = { group = "androidx.room", name = "room-rxjava2", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+# Dependency Injection
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+
+# Image Loading
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+glide-okhttp3-integration = { group = "com.github.bumptech.glide", name = "okhttp3-integration", version.ref = "glide" }
+glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+
+# Other
+rebound = { group = "com.facebook.rebound", name = "rebound", version.ref = "rebound" }
+
+# Testing
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "testRunner" }
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockito" }
+mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockito" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradleTool" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+[bundles]
+androidx-core = ["androidx-core", "androidx-core-ktx", "androidx-fragment-ktx"]
+androidx-lifecycle = ["androidx-lifecycle-livedata-ktx", "androidx-lifecycle-viewmodel-ktx"]
+kotlinx-coroutines = ["kotlinx-coroutines-core", "kotlinx-coroutines-android"]
+retrofit = ["retrofit", "retrofit-converter-gson", "retrofit-adapter-rxjava2"]
+room = ["androidx-room-runtime", "androidx-room-rxjava2", "androidx-room-ktx"]
+hilt = ["hilt-android"]
+glide = ["glide", "glide-okhttp3-integration"]
+testing = ["junit", "androidx-test-runner", "androidx-test-espresso-core", "mockito-inline", "mockito-android"]
