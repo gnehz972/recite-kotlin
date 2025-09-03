@@ -1,4 +1,4 @@
-package com.bocc.recite.kotlin.base
+package com.bocc.recite.kotlin
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
@@ -7,4 +7,4 @@ import dagger.hilt.android.HiltAndroidApp
  * Created by zouzheng on 18-3-8.
  */
 @HiltAndroidApp
-class BaseApp : Application()
+class ReciteApp : Application()
