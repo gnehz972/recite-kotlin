@@ -1,13 +1,13 @@
-package com.bocc.recite.kotlin.di.module
+package com.bocc.recite.kotlin.di
 
-import androidx.room.Room
 import android.content.Context
+import androidx.room.Room
 import com.bocc.recite.kotlin.repository.WordRepository
 import com.bocc.recite.kotlin.repository.api.MainApi
 import com.bocc.recite.kotlin.repository.api.WordApi
+import com.bocc.recite.kotlin.repository.datastore.AppDataStore
 import com.bocc.recite.kotlin.repository.db.AppDatabase
 import com.bocc.recite.kotlin.repository.db.WordDao
-import com.bocc.recite.kotlin.repository.datastore.AppDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -42,7 +41,6 @@ class AppModule {
             .baseUrl("http://open.iciba.com")
             .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
             .create(WordApi::class.java)
 
@@ -58,7 +56,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideAppDataStore(@ApplicationContext context: Context): AppDataStore = AppDataStore(context)
+    fun provideAppDataStore(@ApplicationContext context: Context): AppDataStore =
+        AppDataStore(context)
 
 
 }

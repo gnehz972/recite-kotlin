@@ -79,9 +79,6 @@ dependencies {
     // Networking
     implementation(libs.bundles.retrofit)
     
-    // Reactive
-    implementation(libs.rxandroid)
-    
     // Room
     implementation(libs.bundles.room)
     ksp(libs.androidx.room.compiler)
@@ -92,8 +89,6 @@ dependencies {
     ksp(libs.hilt.compiler)
     
     // Image Loading
-    implementation(libs.bundles.glide)
-    ksp(libs.glide.compiler)
     implementation(libs.coil.compose)
     
     // Other

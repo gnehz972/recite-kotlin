@@ -33,14 +33,8 @@ kotlinxCoroutines = "1.10.2"
 # Networking
 retrofit = "3.0.0"
 
-# Reactive
-rxjava = "2.1.1"
-
 # Dependency Injection
 hilt = "2.57.1"
-
-# Image Loading
-glide = "5.0.5"
 
 # Testing
 junit = "4.13.2"
@@ -95,14 +89,9 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 # Networking
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
-retrofit-adapter-rxjava2 = { group = "com.squareup.retrofit2", name = "adapter-rxjava2", version.ref = "retrofit" }
-
-# Reactive
-rxandroid = { group = "io.reactivex.rxjava2", name = "rxandroid", version.ref = "rxjava" }
 
 # Room
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
-androidx-room-rxjava2 = { group = "androidx.room", name = "room-rxjava2", version.ref = "room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
@@ -110,11 +99,6 @@ androidx-room-compiler = { group = "androidx.room", name = "room-compiler", vers
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
-
-# Image Loading
-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
-glide-okhttp3-integration = { group = "com.github.bumptech.glide", name = "okhttp3-integration", version.ref = "glide" }
-glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
 
 # Other
 rebound = { group = "com.facebook.rebound", name = "rebound", version.ref = "rebound" }
@@ -162,10 +146,9 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version = "2.2.
 androidx-core = ["androidx-core", "androidx-core-ktx", "androidx-fragment-ktx"]
 androidx-lifecycle = ["androidx-lifecycle-livedata-ktx", "androidx-lifecycle-viewmodel-ktx"]
 kotlinx-coroutines = ["kotlinx-coroutines-core", "kotlinx-coroutines-android"]
-retrofit = ["retrofit", "retrofit-converter-gson", "retrofit-adapter-rxjava2"]
-room = ["androidx-room-runtime", "androidx-room-rxjava2", "androidx-room-ktx"]
+retrofit = ["retrofit", "retrofit-converter-gson"]
+room = ["androidx-room-runtime", "androidx-room-ktx"]
 hilt = ["hilt-android"]
-glide = ["glide", "glide-okhttp3-integration"]
 testing = ["junit", "androidx-test-runner", "androidx-test-espresso-core", "mockito-inline", "mockito-android"]
 compose = ["androidx-compose-ui", "androidx-compose-ui-tooling-preview", "androidx-compose-material3", "androidx-compose-material-icons-extended"]
 compose-testing = ["androidx-compose-ui-test-junit4", "androidx-compose-ui-test-manifest"]
