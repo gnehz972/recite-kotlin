@@ -1,12 +1,11 @@
 package com.bocc.recite.kotlin.main.viewmodel
 
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bocc.recite.kotlin.repository.SentenceRepository
 import com.bocc.recite.kotlin.repository.data.DailySentence
-import com.bocc.recite.kotlin.repository.sp.Sp
+import com.bocc.recite.kotlin.repository.datastore.AppDataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SentenceViewMode @Inject constructor(
     private val sentenceRepository: SentenceRepository,
-    private val sp: SharedPreferences
+    private val appDataStore: AppDataStore
 ) : ViewModel() {
 
     private val _sentence = MutableStateFlow<Result<List<DailySentence>>?>(null)
@@ -39,7 +38,7 @@ class SentenceViewMode @Inject constructor(
                 val sentences = sentenceRepository.getDailySentencesDb()
                 _sentence.value = Result.success(sentences)
 
-                val lastCheckDate = sp.getString(Sp.DAILY_SENTENCE_CHECKDATE, "")
+                val lastCheckDate = appDataStore.getString(AppDataStore.DAILY_SENTENCE_CHECKDATE, "")
                 val date = SimpleDateFormat("yyyy-MM-dd").format(Date())
                 if (lastCheckDate != date) {
                     val netSentence = sentenceRepository.getDailySentencesApi()
@@ -47,6 +46,9 @@ class SentenceViewMode @Inject constructor(
 
                     val sentencesNew = sentenceRepository.getDailySentencesDb()
                     _sentence.value = Result.success(sentencesNew)
+                    
+                    // Update the check date
+                    appDataStore.setString(AppDataStore.DAILY_SENTENCE_CHECKDATE, date)
                 }
 
             } catch (e: Exception) {

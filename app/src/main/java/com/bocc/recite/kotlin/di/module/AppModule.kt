@@ -2,13 +2,12 @@ package com.bocc.recite.kotlin.di.module
 
 import androidx.room.Room
 import android.content.Context
-import android.content.SharedPreferences
 import com.bocc.recite.kotlin.repository.WordRepository
 import com.bocc.recite.kotlin.repository.api.MainApi
 import com.bocc.recite.kotlin.repository.api.WordApi
 import com.bocc.recite.kotlin.repository.db.AppDatabase
 import com.bocc.recite.kotlin.repository.db.WordDao
-import com.bocc.recite.kotlin.repository.sp.Sp
+import com.bocc.recite.kotlin.repository.datastore.AppDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -59,7 +58,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providePreference(@ApplicationContext context: Context) : SharedPreferences = context.getSharedPreferences(Sp.SP_FILE_NAME, Context.MODE_PRIVATE)
+    fun provideAppDataStore(@ApplicationContext context: Context): AppDataStore = AppDataStore(context)
 
 
 }
