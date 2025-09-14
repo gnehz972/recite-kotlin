@@ -18,7 +18,7 @@ The app follows **MVVM (Model-View-ViewModel)** architecture with:
 - **Jetpack Compose**
 - **Material 3**
 - **Compose Compiler**
-- **Navigation Compose**
+- **Navigation3**
 - **Hilt Navigation Compose**
 
 ### **Data Management**
