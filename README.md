@@ -1,4 +1,4 @@
-# Recite-kotlin
+# recite-kotlin
 
 A modern Android vocabulary learning app built with Kotlin, following Android development best practices and implementing MVVM architecture.
 
@@ -15,25 +15,25 @@ The app follows **MVVM (Model-View-ViewModel)** architecture with:
 ## 🚀 Tech Stack
 
 ### **UI & Compose**
-- **Jetpack Compose**
-- **Material 3**
-- **Compose Compiler**
-- **Navigation3**
-- **Hilt Navigation Compose**
+- Jetpack Compose
+- Material 3
+- Compose Compiler
+- Navigation3
+- Hilt Navigation Compose
 
 ### **Data Management**
-- **Room**
-- **DataStore**
-- **Retrofit**
-- **Gson**
+- Room
+- DataStore
+- Retrofit
+- Gson
 
 ### **Asynchronous Programming**
-- **Kotlin Coroutines**
-- **Flow**
+- Kotlin Coroutines
+- Flow
 
 ### **Dependency Injection**
-- **Hilt**
-- **Dagger**
+- Hilt
+- Dagger
 
 ### **Image Loading**
-- **Coil**
+- Coil
